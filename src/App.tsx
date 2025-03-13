@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import ReactFlow, {
   MiniMap,
   Controls,
@@ -7,7 +7,6 @@ import ReactFlow, {
   useEdgesState,
   addEdge,
   Connection,
-  Edge,
   BackgroundVariant,
 } from 'reactflow';
 
