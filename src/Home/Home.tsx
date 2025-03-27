@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import { treeData } from "../treeType";
+import { useState, useRef, useEffect } from "react";
+import { treeData } from "../Data/treeType";
 import { ChevronRight, RotateCcw, ArrowLeft } from "../IconComponents";
 import Button from "../Button";
 import styles from "./Home.module.css";
@@ -8,31 +8,49 @@ const Home: React.FC = () => {
   const [currentNodeId, setCurrentNodeId] = useState<string>("root");
   const [result, setResult] = useState<string | null>(null);
   const [history, setHistory] = useState<string[]>([]);
-  // Reference to the container to blur focus when navigating
   const containerRef = useRef<HTMLDivElement>(null);
 
+  //Log the current node options whenever currentNodeId changes (TO BE REMOVED - JUST FOR EDITING PURPOSES)
+  useEffect(() => {
+    const currentNode = treeData[currentNodeId];
+    if (currentNode) {
+      console.log("Current node:", currentNodeId);
+      console.log("Options:", currentNode.options);
+    }
+  }, [currentNodeId]);
+
   const handleOptionClick = (nextNodeId: string | null, optionResult?: string) => {
-    // Blur any focused element to prevent unwanted highlighting
+    // Debug: Log information about the clicked option (TO BE REMOVED - JUST FOR EDITING PURPOSES)
+    console.log("Option clicked:", { nextNodeId, optionResult });
+    
     if (document.activeElement instanceof HTMLElement) {
       document.activeElement.blur();
     }
     
-    if (nextNodeId === null && optionResult) {
+    // NEW APPROACH: More explicit handling with clear priority
+    // First check if there's a result to display
+    if (typeof optionResult === "string" && optionResult.length > 0) {
+      console.log("Setting result to:", optionResult);
       setResult(optionResult);
-    } else if (nextNodeId) {
+    } 
+    // If no result but we have a nextNodeId, navigate to that node
+    else if (nextNodeId) {
+      console.log("Navigating to node:", nextNodeId);
       setHistory([...history, currentNodeId]);
       setCurrentNodeId(nextNodeId);
       setResult(null);
     }
+    // If we reach here, something might be wrong with the data
+    else {
+      console.warn("Option has neither result nor nextNodeId:", { nextNodeId, optionResult });
+    }
     
-    // Move focus to the container instead of leaving it on the button
     if (containerRef.current) {
       containerRef.current.focus();
     }
   };
 
   const handleBackClick = () => {
-    // Blur any focused element
     if (document.activeElement instanceof HTMLElement) {
       document.activeElement.blur();
     }
@@ -45,14 +63,12 @@ const Home: React.FC = () => {
       setResult(null);
     }
     
-    // Move focus to the container
     if (containerRef.current) {
       containerRef.current.focus();
     }
   };
 
   const handleRestart = () => {
-    // Blur any focused element
     if (document.activeElement instanceof HTMLElement) {
       document.activeElement.blur();
     }
@@ -61,7 +77,6 @@ const Home: React.FC = () => {
     setResult(null);
     setHistory([]);
     
-    // Move focus to the container
     if (containerRef.current) {
       containerRef.current.focus();
     }
@@ -69,11 +84,16 @@ const Home: React.FC = () => {
 
   const currentNode = treeData[currentNodeId];
 
+  // Debug: Check if currentNode exists
+  if (!currentNode) {
+    console.error("Current node not found:", currentNodeId);
+    return <div>Error: Node not found</div>;
+  }
+
   return (
     <div 
       className={styles.decisionTreeContainer} 
       ref={containerRef}
-      // Make the container focusable but not in the tab order
       tabIndex={-1}
     >
       <div className={styles.decisionTree}>
@@ -123,6 +143,7 @@ const Home: React.FC = () => {
           )}
         </div>
 
+
         {result ? (
           <div className={styles.resultNode}>
             <h3>Recommendation:</h3>
@@ -147,9 +168,7 @@ const Home: React.FC = () => {
                   key={index}
                   className={styles.optionButton}
                   onClick={() => handleOptionClick(option.nextNodeId, option.result)}
-                  // Adding this to remove focus after click
                   onMouseDown={(e) => {
-                    // Prevent default to avoid focus
                     e.preventDefault();
                   }}
                 >

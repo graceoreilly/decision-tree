@@ -13,7 +13,7 @@ export type TreeNodeType = {
       id: "root",
       content: "Anti-fungal therapy",
       options: [
-        { text: "Suspected invasive fungal infection", nextNodeId: "suspected" },
+        { text: "Suspected invasive fungal infection?", nextNodeId: "suspected" },
         { text: "Prophylaxis for invasive fungal disease", nextNodeId: "prophylaxis" },
       ],
     },
@@ -58,7 +58,7 @@ export type TreeNodeType = {
       content: "Older child",
       options: [
         { text: "Immunocompromised child", nextNodeId: "prophylaxis-immunocompromised" },
-        { text: "No - consult ID", nextNodeId: "no", result: "Consult Infectious Disease specialist for guidance." },
+        { text: "No - consult ID", nextNodeId: null, result: "Consult Infectious Disease specialist for guidance." },
       ],
     },
     "candida-suspected": {
