@@ -61,6 +61,6 @@ http://localhost:3000
 ## Future Plans
 - Connect to a database for ease of updates and changes to decision tree.
 
-##Author
+## Author
 
 Created by Grace O'Reilly - graceoreilly111@gmail.com
