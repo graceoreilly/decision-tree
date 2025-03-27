@@ -1,7 +1,7 @@
 # Decision Tree
 
 ## Medical Decision Tree Project
-This repository contains the development of an interactive decision tree and mapping tool designed to assist healthcare professionals in clinical decision-making. This is a freelance project commissioned by a paediatric doctor, this tool aims to streamline patient assessment processes by providing a clear, navigable pathway through complex medical decision points. This is currently NOT for clincial use, currently a work in progress, with ongoing development based on the client's feedback.
+This repository contains the development of an interactive decision tree and mapping tool designed to assist healthcare professionals in clinical decision-making. This is a professional project requested by a paediatric doctor, this tool aims to streamline patient assessment processes by providing a clear, navigable pathway through complex medical decision points. This is currently NOT for clincial use, currently a work in progress, with ongoing development based on the client's feedback.
 
 Link to deployment: [Decision Tree](https://decision-tree-ten.vercel.app/)
 
