@@ -1,0 +1,87 @@
+.treeManager {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .error {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+  }
+  
+  .treeManagerActions {
+    margin-bottom: 20px;
+  }
+  
+  .newTreeForm {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .newTreeForm input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+  }
+  
+  .formActions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+  
+  .treeList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .treeItem {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .treeItem:hover {
+    background-color: #f1f3f5;
+  }
+  
+  .treeItem.selected {
+    background-color: #e7f5ff;
+    border-color: #74c0fc;
+  }
+  
+  .treeName {
+    font-weight: bold;
+    flex: 1;
+  }
+  
+  .treeInfo {
+    margin: 0 20px;
+    color: #6c757d;
+    font-size: 0.85rem;
+  }
+  
+  .treeActions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .selectedTree {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+  }

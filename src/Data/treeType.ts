@@ -2,10 +2,11 @@ export type TreeNodeType = {
     id: string
     content: string
     options: {
-      text: string
-      nextNodeId: string | null
+      text?: string
+      nextNodeId?: string | null
       result?: string
     }[]
+    result?: string
   }
   
   export const treeData: Record<string, TreeNodeType> = {
@@ -36,12 +37,24 @@ export type TreeNodeType = {
     "suspected-neonate": {
       id: "suspected-neonate",
       content: "Neonate",
-      options: [{ text: "Candida suspected or confirmed", nextNodeId: "candida-suspected" }],
+      options: [{ text: "Candida suspected or confirmed?", nextNodeId: "candida-suspected" }],
     },
     "suspected-older-child": {
       id: "suspected-older-child",
-      content: "Older child",
-      options: [{ text: "Immunocompromised child", nextNodeId: "immunocompromised-child" }],
+      content: "Immunocompromised child?",
+      options: [{ text: "Yes", nextNodeId: "immunocompromised-yes" },
+        { text: "No", nextNodeId: "consult-id" }
+      ],
+    },
+      "consult-id": {
+      id: "consult-id",
+      content: "Consult ID",
+      options: [
+        {
+          text: "Consult ID",
+          nextNodeId: null,
+          result: "Consult ID",
+        }],
     },
     "prophylaxis-neonate": {
       id: "prophylaxis-neonate",
@@ -65,11 +78,6 @@ export type TreeNodeType = {
       id: "candida-suspected",
       content: "Candida suspected or confirmed",
       options: [{ text: "Candida localised disease or blood", nextNodeId: "candida-localised" }],
-    },
-    "immunocompromised-child": {
-      id: "immunocompromised-child",
-      content: "Immunocompromised child",
-      options: [{ text: "Yes", nextNodeId: "immunocompromised-yes" }],
     },
     "neonatal-guidelines": {
       id: "neonatal-guidelines",
