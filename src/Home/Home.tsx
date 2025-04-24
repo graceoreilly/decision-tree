@@ -10,7 +10,7 @@ const Home: React.FC = () => {
   const [history, setHistory] = useState<string[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  //Log the current node options whenever currentNodeId changes (TO BE REMOVED - JUST FOR EDITING PURPOSES)
+  // (TO BE REMOVED - JUST FOR EDITING PURPOSES)
   useEffect(() => {
     const currentNode = treeData[currentNodeId];
     if (currentNode) {
@@ -20,26 +20,24 @@ const Home: React.FC = () => {
   }, [currentNodeId]);
 
   const handleOptionClick = (nextNodeId: string | null, optionResult?: string) => {
-    // Debug: Log information about the clicked option (TO BE REMOVED - JUST FOR EDITING PURPOSES)
+    // (TO BE REMOVED - JUST FOR EDITING PURPOSES)
     console.log("Option clicked:", { nextNodeId, optionResult });
     
     if (document.activeElement instanceof HTMLElement) {
       document.activeElement.blur();
     }
     
-    // NEW APPROACH: More explicit handling with clear priority
     if (typeof optionResult === "string" && optionResult.length > 0) {
       console.log("Setting result to:", optionResult);
       setResult(optionResult);
     } 
-    // If no result but we have a nextNodeId, navigate to that node
+
     else if (nextNodeId) {
       console.log("Navigating to node:", nextNodeId);
       setHistory([...history, currentNodeId]);
       setCurrentNodeId(nextNodeId);
       setResult(null);
     }
-    // If we reach here, something might be wrong with the data
     else {
       console.warn("Option has neither result nor nextNodeId:", { nextNodeId, optionResult });
     }
@@ -83,7 +81,6 @@ const Home: React.FC = () => {
 
   const currentNode = treeData[currentNodeId];
 
-  // Debug: Check if currentNode exists
   if (!currentNode) {
     console.error("Current node not found:", currentNodeId);
     return <div>Error: Node not found</div>;
@@ -108,7 +105,6 @@ const Home: React.FC = () => {
                 variant="ghost"
                 size="sm"
                 onClick={() => {
-                  // Blur focus
                   if (document.activeElement instanceof HTMLElement) {
                     document.activeElement.blur();
                   }
@@ -117,7 +113,6 @@ const Home: React.FC = () => {
                   setHistory(history.slice(0, index));
                   setResult(null);
                   
-                  // Move focus to container
                   if (containerRef.current) {
                     containerRef.current.focus();
                   }
