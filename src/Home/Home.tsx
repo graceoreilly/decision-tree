@@ -28,7 +28,6 @@ const Home: React.FC = () => {
     }
     
     // NEW APPROACH: More explicit handling with clear priority
-    // First check if there's a result to display
     if (typeof optionResult === "string" && optionResult.length > 0) {
       console.log("Setting result to:", optionResult);
       setResult(optionResult);
@@ -167,7 +166,7 @@ const Home: React.FC = () => {
                 <button
                   key={index}
                   className={styles.optionButton}
-                  onClick={() => handleOptionClick(option.nextNodeId, option.result)}
+                  onClick={() => handleOptionClick(option.nextNodeId ?? null, option.result)}
                   onMouseDown={(e) => {
                     e.preventDefault();
                   }}
