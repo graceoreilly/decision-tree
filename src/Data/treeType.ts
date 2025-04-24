@@ -14,7 +14,7 @@ export type TreeNodeType = {
       id: "root",
       content: "Anti-fungal therapy",
       options: [
-        { text: "Suspected invasive fungal infection?", nextNodeId: "suspected" },
+        { text: "Suspected invasive fungal infection", nextNodeId: "suspected" },
         { text: "Prophylaxis for invasive fungal disease", nextNodeId: "prophylaxis" },
       ],
     },
